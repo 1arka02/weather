@@ -6,8 +6,7 @@ import './SavedLocations.css';
 
 const SavedLocations = ({ users, onDelete }) => {
   const handleDeleteLocation = (userId, locationId) => {
-    axios.delete(`weather-gamma-swart.vercel.app
-/${userId}/locations/${locationId}`)
+    axios.delete(`https://localhost:2000/${userId}/locations/${locationId}`)
       .then(() => {
         onDelete(userId, locationId);
       })
