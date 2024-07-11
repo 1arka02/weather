@@ -45,7 +45,7 @@ const App = () => {
   useEffect(() => {
     const fetchSavedLocations = async () => {
       try {
-        const response = await axios.get('weather-gamma-swart.vercel.app
+        const response = await axios.get('https://localhost:2000
 /users');
         setSavedLocations(response.data);
       } catch (error) {
@@ -83,8 +83,7 @@ const App = () => {
       return;
     }
 
-    axios.post(`weather-gamma-swart.vercel.app
-/users/${selectedUser._id}/locations`, { name: newLocation })
+    axios.post(`https://localhost:2000/users/${selectedUser._id}/locations`, { name: newLocation })
       .then((response) => {
         const updatedUser = savedLocations.find((user) => user._id === selectedUser._id);
         updatedUser.savedLocations.push({ name: newLocation });
@@ -95,8 +94,7 @@ const App = () => {
   };
 
   const handleDeleteLocation = (userId, locationId) => {
-    axios.delete(`weather-gamma-swart.vercel.app
-/users/${userId}/locations/${locationId}`)
+    axios.delete(`https://localhost:2000/users/${userId}/locations/${locationId}`)
       .then(() => {
         const updatedUsers = savedLocations.map(user =>
           user._id === userId ? { ...user, savedLocations: user.savedLocations.filter(loc => loc._id !== locationId) } : user
@@ -114,8 +112,7 @@ const App = () => {
 
     setEnteringUsername(true); // Set entering username state
 
-    axios.post('weather-gamma-swart.vercel.app
-/users', { username: newUser })
+    axios.post('https://localhost:2000/users', { username: newUser })
       .then((response) => {
         setSavedLocations([...savedLocations, response.data]);
         setUsername(response.data);
